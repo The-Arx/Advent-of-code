@@ -33,8 +33,10 @@ Monkey 3:
 
 txt=getData(year, day)
 #replace statments go here
-
 monkeys=[monkey.split("\n") for monkey in txt.split("\n\n")]
+
+lcm=1
+import math
 
 for i,monkey in enumerate(monkeys):
   monkeys[i]={
@@ -46,14 +48,17 @@ for i,monkey in enumerate(monkeys):
     "false":int(monkey[5].split("    If false: throw to monkey ")[1]),
     "inspected":0,
   }
+  lcm=math.lcm(lcm,monkeys[i]['test'])
 result = 0
+
+
 
 def getVal(num,item):
   if num=='old':
     return item
   return int(num)
 
-for i in range(20):
+for i in range(10000):
   for monkey in monkeys:
     for item in monkey['items']:
       op,num=monkey['operation']
@@ -62,7 +67,7 @@ for i in range(20):
         item*=num
       elif op=="+":
         item+=num
-      item//=3
+      item%=lcm
       if item%monkey['test']==0:
         nextmonkey=monkey['true']
       else:

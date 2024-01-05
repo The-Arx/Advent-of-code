@@ -24,10 +24,10 @@ result=0
 def get(r):
   register=registers[running]
   if r in register:
-    print(r+" was "+str(register[r]))
+    #print(r+" was "+str(register[r]))
     return register[r]
   else:
-    print(r+" was unset (0)")
+    #print(r+" was unset (0)")
     return 0
 
 #def setR(p,r,v):
@@ -49,7 +49,7 @@ def fSnd(x):
 def fSet(x,y):
   register=registers[running]
   register[x]=getVal(y)
-  print(x+" is now "+str(register[x]))
+  #print(x+" is now "+str(register[x]))
 
 def fAdd(x,y):
   fSet(x,get(x)+getVal(y))
@@ -75,7 +75,7 @@ def fRcv(x):
     recived=sent
     sent=[]
     running=1-running
-    print("switched to thread "+str(running))
+    #print("switched to thread "+str(running))
     inums[running]-=1
     
     
@@ -96,12 +96,10 @@ instructions={
 n=0
 while True:
   i=inums[running]
-  print("\n"+str(n)+") instruction "+str(i))
+  #print("\n"+str(n)+") instruction "+str(i))
   line = lines[i]
-  print(line)
+  #print(line)
   instruct, *args = line.split(" ")
   instructions[instruct](*args)
   inums[running]+=1
   n+=1
-
-

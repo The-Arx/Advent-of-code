@@ -2,8 +2,8 @@ import requests
 import sys
 from pathlib import Path
 
-path=Path(__file__)
-dataPath=Path(path.parent,"data")
+path=Path(__file__).resolve()
+dataPath=path.with_name("data")
 
 def getPath(year,day):
   return Path(dataPath,"{}day{}.txt".format(year,day))
@@ -19,6 +19,7 @@ def getData(year,day):
     return txt
     
 def fetchData(year, day, saveToFile=True ,session=None):
+  print("Fetching Data...")
   url="https://adventofcode.com/{}/day/{}/input".format(year,day)
   if(session==None):
     try:
@@ -29,7 +30,7 @@ def fetchData(year, day, saveToFile=True ,session=None):
       session=file.read()
       file.close()
   headers = {
-    'User-Agent': 'jonathan.gassend@gmail.com'
+    'User-Agent': 'https://github.com/The-Arx/Advent-of-code/ by jonathan.gassend@gmail.com'
   }
   cookies = {
     "session" : session

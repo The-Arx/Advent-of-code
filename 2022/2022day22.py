@@ -16,8 +16,9 @@ txt="""        ...#
         .#......
         ......#.
 
-10R5L5R10L4R5L5"""#getData(year,day)
-#replace statments go here
+10R5L5R10L4R5L5"""
+
+#getData(year,day)
 
 board, instructions = txt.split("\n\n")
 board = board.split("\n")

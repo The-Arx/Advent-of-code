@@ -1,16 +1,21 @@
 from DataGetter import getData
 
-year = 2023
-day = 12
+year = 2023 ##insert year
+day = 12 ##insert day
 
 txt=getData(year, day)
-#replace statments go here
 
-lines=txt.split("\n")
+def parseData(txt):
+  return txt.split("\n")
 
-result = 0
+def part1(txt):
+  lines=parseData(txt)
+  
+  result = 0
+  
+  for i, line in enumerate(lines):
+    print(line)
+  
+  return result
 
-for i, line in enumerate(lines):
-  print(line)
-
-print(result)
+print(part1(txt))
