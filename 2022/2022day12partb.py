@@ -9,7 +9,6 @@ for x, line in enumerate(data.split("\n")):
             end = (x, y)
             char = 'z'
         elif char == "S":
-            start = (x, y)
             char = 'a'
         row.append(ord(char) - ord('a'))
     grid.append(row)
@@ -18,9 +17,9 @@ width = len(grid)
 height = len(grid[0])
     
 dist = [[None] * height for _ in range(width)]
-dist[start[0]][start[1]] = 0
+dist[end[0]][end[1]] = 0
 queue = deque()
-queue.append(start)
+queue.append(end)
 
 moves = [
     (-1, 0),
@@ -35,11 +34,13 @@ while queue:
     d = dist[x][y]
     for dx, dy in moves:
         nx, ny = x + dx, y + dy
-        if 0 <= nx < width and 0 <= ny < height and dist[nx][ny] is None and grid[nx][ny] <= val + 1:
+        if 0 <= nx < width and 0 <= ny < height and dist[nx][ny] is None and grid[nx][ny] + 1 >= val:
             dist[nx][ny] = d + 1
             queue.append((nx, ny))
+            if grid[nx][ny] == 0:
+                print(d + 1)
             
-print(dist[end[0]][end[1]])
+            
 
 
             
